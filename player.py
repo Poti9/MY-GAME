@@ -24,7 +24,10 @@ class Player:
         pygame.draw.circle(sur, self.color, (int(self.pos.real), int(self.pos.imag)), self.radius)
 
         # its vector (-50, -(r+40))
-        v = -50 - (self.radius+40)*1j
+        if self.pos.imag > HEIGHT/2:
+            v = -50 - (self.radius+40)*1j
+        else:
+            v = -50 + (self.radius+20)*1j
         healthbar_pos = self.pos + v
         # Draw backround of health
         pygame.draw.rect(sur, BLACK, (int(healthbar_pos.real), int(healthbar_pos.imag), 100, 20))
