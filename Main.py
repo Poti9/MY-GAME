@@ -14,7 +14,7 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 p1 = Player(50, 50, RED)
 p2 = Player(900, 600, BLUE)
-b = Bullet(500+350j, 1, 7)
+
 
 while running:
     # 1. Process input
@@ -26,7 +26,7 @@ while running:
                 p2.start_moving()
             if event.key == pygame.K_t:
                 p2.fire_bullet()
-            if event.key == pygame.K_m:
+            if event.key == pygame.K_COMMA:
                 p1.fire_bullet()
             if event.key == pygame.K_s:
                 p2.start_moving_back()
@@ -62,7 +62,6 @@ while running:
     # 2. Update game
     p1.update(p2)
     p2.update(p1)
-    b.update()
     if p1.bullet is not None:
         p1.bullet.update()
     if p2.bullet is not None:
@@ -77,7 +76,6 @@ while running:
     # Draw things here
     p1.draw(screen)
     p2.draw(screen)
-    b.draw(screen)
     if p1.bullet is not None:
         p1.bullet.draw(screen)
     if p2.bullet is not None:
@@ -86,3 +84,5 @@ while running:
 
     # 4. Wait some time
     clock.tick(55)
+
+#
