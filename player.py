@@ -84,4 +84,3 @@ class Player:
 
     def fire_bullet(self):
         self.bullet = Bullet(self.pos, 15, self.dir)
-        self.bullet = Bullet(self.pos, 15, self.dir)
