@@ -14,7 +14,7 @@ class Player:
         self.vel = 0
         self.vel_dir = 0
         self.color = col
-        self.bullet = None
+        self.bullets = []
         self.health = 100
 
     def draw(self, sur):
@@ -75,12 +75,15 @@ class Player:
         self.pos += cmath.rect(self.vel, radians(self.dir))
         if self.is_outside_screen():
             self.pos -= cmath.rect(self.vel, radians(self.dir))
+
         if self.collides_with_other_player(other_player):
             self.pos -= cmath.rect(self.vel, radians(self.dir))
-        if self.bullet is not None:
-            if self.bullet.collides_with_player(other_player):
-                other_player.health -= 5
-                self.bullet = None
+
+        for b in self.bullets:
+            if b.collides_with_player(other_player):
+                other_player.health -= 1.5
+                b = None
 
     def fire_bullet(self):
-        self.bullet = Bullet(self.pos, 15, self.dir)
+        b = Bullet(self.pos, 20, self.dir)
+        self.bullets.append(b)
